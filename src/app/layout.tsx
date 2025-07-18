@@ -4,8 +4,8 @@ import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Ninth Science Flash',
-  description: 'AI-powered flashcards for Class 9 Science.',
+  title: 'Content Flashcards',
+  description: 'AI-powered flashcards from your own content.',
 };
 
 export default function RootLayout({

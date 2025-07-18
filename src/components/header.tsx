@@ -8,7 +8,7 @@ export function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <BookText className="h-6 w-6 text-primary" />
-          <span className="font-bold text-lg hidden sm:inline-block">Ninth Science Flash</span>
+          <span className="font-bold text-lg hidden sm:inline-block">Content Flashcards</span>
         </Link>
         <ThemeToggle />
       </div>
