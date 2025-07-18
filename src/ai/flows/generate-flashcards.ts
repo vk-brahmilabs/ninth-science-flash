@@ -41,7 +41,7 @@ const prompt = ai.definePrompt({
   Lesson Content: {{{lessonContent}}}
 
   Flashcards should be in the following JSON format:
-  ```json
+  \`\`\`json
   [
     {
       "question": "Question 1",
@@ -52,8 +52,8 @@ const prompt = ai.definePrompt({
       "answer": "Answer 2"
     }
   ]
-  ```
-  `, 
+  \`\`\`
+  `,
 });
 
 const generateFlashcardsFlow = ai.defineFlow(
