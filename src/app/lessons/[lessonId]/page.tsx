@@ -4,8 +4,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import fs from 'fs/promises';
+import path from 'path';
 
-export default function LessonPage({
+export default async function LessonPage({
   params,
 }: {
   params: { lessonId: string };
@@ -15,6 +17,20 @@ export default function LessonPage({
   if (!lesson) {
     notFound();
   }
+
+  let lessonContent = '';
+  try {
+    // Construct the file path relative to the project root
+    const filePath = path.join(process.cwd(), 'src', 'lib', `${lesson.id}.html`);
+    lessonContent = await fs.readFile(filePath, 'utf-8');
+    // Basic HTML tag stripping. For production, you might want a more robust library.
+    lessonContent = lessonContent.replace(/<[^>]*>/g, ' ');
+  } catch (error) {
+    console.error(`Could not read file for lesson ${lesson.id}:`, error);
+    // Handle the error appropriately, maybe show a message to the user
+    lessonContent = "Error: Could not load lesson content. Please make sure the file exists at `src/lib/" + lesson.id + ".html`";
+  }
+
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
@@ -37,7 +53,7 @@ export default function LessonPage({
       </div>
 
       <div className="max-w-3xl mx-auto">
-        <FlashcardGenerator />
+        <FlashcardGenerator lessonContent={lessonContent} />
       </div>
     </div>
   );
